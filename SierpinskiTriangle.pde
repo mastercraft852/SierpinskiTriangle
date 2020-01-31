@@ -1,22 +1,32 @@
+int bigLen = height;
 public void setup()
 {
-size(500,500);
+	background(255);
+size(1000,1000);
 }
 public void draw()
 {
-	sierpinski(0,500,500);
+	sierpinski(0,height,bigLen);
 }
-// public void mouseDragged()//optional
-// {
+public void mousePressed()
+{
+	background(255);
+	bigLen = (int)(Math.random()*height);
+	sierpinski(0,height,bigLen);
+}
 
-// }
 public void sierpinski(int x, int y, int len) 
 {
-	fill(255);
-	if(len<=20) triangle(x,y,x+len/2,y-len,x+len,y);
+	float r,g,b;
+	r = (float)(Math.random()*255);
+	g = (float)(Math.random()*255);
+	b = (float)(Math.random()*255);
+	stroke(r,g,b);
+	fill(r,g,b);
+	if(len<=20) triangle(x,y,x+len,y,x+len/2,y-len);
 	else{
-	triangle(x,y,x+len/4,y-len/2,x+len/2,y);
-	triangle(x+len/2,y,x+(len-len/4),y-len/2,x+len,y);
-	triangle(x+len/4,y-len/2,x+(len-len/4),y-len/2,x+len/2,y-len);
+		sierpinski(x,y,len/2);
+		sierpinski(x+len/2,y,len/2);
+		sierpinski(x+len/4,y-len/2,len/2);
 }
 }
